@@ -6,19 +6,20 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:03:21 by jtollena          #+#    #+#             */
-/*   Updated: 2024/03/21 10:55:01 by jtollena         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:50:51 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.hpp"
+#include <iomanip>
 
 PhoneBook::PhoneBook(void) {
-	std::cout << "PhoneBook initialized" << std::endl;
+	// std::cout << "PhoneBook initialized" << std::endl;
 	return;
 }
 
 PhoneBook::~PhoneBook(void) {
-	std::cout << "PhoneBook destroyed" << std::endl;
+	// std::cout << "PhoneBook destroyed" << std::endl;
 	return;
 }
 
@@ -29,30 +30,45 @@ std::string	print_table(std::string str)
 		newstr[9] = '.';
 		newstr.erase(10, newstr.size());
 	}
-	while (newstr.size() < 10)
-		newstr.append(" ");
 	return newstr;
 }
 
-void	PhoneBook::display(void){
+int		PhoneBook::contact_size(){
+	int k = 0;
 	for(int j = 0; j < 8; j++){
 		int	toDisplay = j;
 		for(int i = 0; i < 8; i++)
-			if (this->contacts[i].id == toDisplay + 1)
-				std::cout << ((this->contacts[i].id - 1) % 8) + 1 << " | " << print_table(this->contacts[i].firstname) << " | " << print_table(this->contacts[i].lastname) << " | " << print_table(this->contacts[i].nickname) << std::endl;
+			if (this->contacts[i].getId() == toDisplay + 1)
+				k++;
+	}
+	return k;
+}
+
+void	PhoneBook::display(void){
+	if (this->contact_size() == 0){
+		std::cout << "No contact found." << std::endl;
+		return;
+	}
+	std::cout << "- | ---------- | ---------- | ---------- |" << std::endl;
+	for(int j = 0; j < 8; j++){
+		int	toDisplay = j;
+		for(int i = 0; i < 8; i++)
+			if (this->contacts[i].getId() == toDisplay + 1)
+				std::cout << ((this->contacts[i].getId() - 1) % 8) + 1 << " | " << std::setw(10) << print_table(this->contacts[i].getFirstname()) << " | " << std::setw(10) << print_table(this->contacts[i].getLastname()) << " | " << std::setw(10) << print_table(this->contacts[i].getNickname()) << " |" << std::endl;
 		toDisplay++;
 	}
+	std::cout << "- | ---------- | ---------- | ---------- |" << std::endl;
 }
 
 void	PhoneBook::display_contact(int index){
 	for(int j = 0; j < 8; j++){
-		if (this->contacts[j].id == index){
-			std::cout << "Contact Informations : " << index << std::endl;
-			std::cout << "Firstname: " << this->contacts[j].firstname << std::endl;
-			std::cout << "Lastname: " << this->contacts[j].lastname << std::endl;
-			std::cout << "Nickname: " << this->contacts[j].nickname << std::endl;
-			std::cout << "Phone Number: " << this->contacts[j].phone << std::endl;
-			std::cout << "Darkest Secret: " << this->contacts[j].secret << std::endl;
+		if (this->contacts[j].getId() == index){
+			std::cout << "--- Contact Informations : " << index << " --- " <<std::endl;
+			std::cout << "Firstname: " << this->contacts[j].getFirstname() << std::endl;
+			std::cout << "Lastname: " << this->contacts[j].getLastname() << std::endl;
+			std::cout << "Nickname: " << this->contacts[j].getNickname() << std::endl;
+			std::cout << "Phone Number: " << this->contacts[j].getPhone() << std::endl;
+			std::cout << "Darkest Secret: " << this->contacts[j].getSecret() << std::endl;
 			return;
 		}
 	}
@@ -62,28 +78,28 @@ void	PhoneBook::display_contact(int index){
 Contact *PhoneBook::newcontact(void) {
 	Contact *toreturn;
 	for(int i = 0; i < 8; i++)
-		if (this->contacts[i].id == -1)
+		if (this->contacts[i].getId() == -1)
 			toreturn = &this->contacts[i];
 
 	int lastId = 0;
 	for(int i = 0; i < 8; i++)
-		if (this->contacts[i].id > lastId)
-			lastId = this->contacts[i].id;
+		if (this->contacts[i].getId() > lastId)
+			lastId = this->contacts[i].getId();
 			
 	if (toreturn == NULL){
 		int firstId = lastId;
 		int firstContactId = 0;
 		for(int i = 0; i < 8; i++){
-			if (this->contacts[i].id < firstId){
-				firstId = this->contacts[i].id;
+			if (this->contacts[i].getId() < firstId){
+				firstId = this->contacts[i].getId();
 				firstContactId = i;
 			}
 		}
 		toreturn = &this->contacts[firstContactId];
-		toreturn->id = lastId + 1;
+		toreturn->setId(lastId + 1);
 		for(int i = 0; i < 8; i++)
-			this->contacts[i].id = this->contacts[i].id - 1;
+			this->contacts[i].setId(this->contacts[i].getId() - 1);
 	} else 
-		toreturn->id = lastId + 1;
+		toreturn->setId(lastId + 1);
 	return toreturn;
 }
