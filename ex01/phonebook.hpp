@@ -6,14 +6,14 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:03:19 by jtollena          #+#    #+#             */
-/*   Updated: 2024/03/25 11:01:43 by jtollena         ###   ########.fr       */
+/*   Updated: 2024/03/26 11:28:35 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-#include "contact.hpp"
+#include "Contact.hpp"
 
 class	PhoneBook {
 	private:

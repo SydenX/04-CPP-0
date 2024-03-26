@@ -6,7 +6,7 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:29:43 by jtollena          #+#    #+#             */
-/*   Updated: 2024/03/14 15:35:14 by jtollena         ###   ########.fr       */
+/*   Updated: 2024/03/26 11:28:28 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define MAIN_HPP
 
 #include <iostream>
-#include "phonebook.hpp"
-#include "contact.hpp"
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
 #include <cstring>
 
 #endif
