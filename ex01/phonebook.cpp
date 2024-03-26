@@ -6,7 +6,7 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:03:21 by jtollena          #+#    #+#             */
-/*   Updated: 2024/03/25 12:03:24 by jtollena         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:54:03 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	PhoneBook::display(void){
 		std::cout << "No contact found." << std::endl;
 		return;
 	}
+	std::cout << "ID| FirstName  | LastName   | NickName   |" << std::endl;
 	std::cout << "- | ---------- | ---------- | ---------- |" << std::endl;
 	for(int j = 0; j < 8; j++){
 		int	toDisplay = j;
