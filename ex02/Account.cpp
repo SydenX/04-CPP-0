@@ -6,7 +6,7 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:44:28 by jtollena          #+#    #+#             */
-/*   Updated: 2024/03/21 11:44:13 by jtollena         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:23:50 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,13 @@ int	Account::_totalNbDeposits = 0;
 int	Account::_totalNbWithdrawals = 0;
 
 void Account::_displayTimestamp(void){
-	time_t now = time(0);
-	std::cout << "[" << now << "]";
+	time_t now;
+	time(&now);
+	struct tm * timeinfo = std::localtime(&now);
+	char buffer[80];
+	std::strftime(buffer,sizeof(buffer),"%Y%m%d_%H%M%S",timeinfo);
+	std::string str(buffer);
+	std::cout << "[" << str << "]";
 }
 
 Account::Account(int initial_deposit) {

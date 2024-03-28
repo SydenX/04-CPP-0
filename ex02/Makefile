@@ -6,7 +6,7 @@
 #    By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 23:04:50 by lolemmen          #+#    #+#              #
-#    Updated: 2024/03/21 13:16:26 by jtollena         ###   ########.fr        #
+#    Updated: 2024/03/28 14:11:46 by jtollena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = tests
 # Compilation
 
 RM = rm -rf
-CC = g++
+CC = c++
 CFLAGS = -std=c++98 -Wall -Werror -Wextra
 
 # Directories

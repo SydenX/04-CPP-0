@@ -6,7 +6,7 @@
 #    By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 23:04:50 by lolemmen          #+#    #+#              #
-#    Updated: 2024/03/14 12:20:16 by jtollena         ###   ########.fr        #
+#    Updated: 2024/03/28 14:11:40 by jtollena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = megaphone
 # Compilation
 
 RM = rm -rf
-CC = g++
+CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
 # Directories

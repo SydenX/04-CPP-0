@@ -6,7 +6,7 @@
 #    By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 23:04:50 by lolemmen          #+#    #+#              #
-#    Updated: 2024/03/26 11:28:07 by jtollena         ###   ########.fr        #
+#    Updated: 2024/03/28 14:22:42 by jtollena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = phonebook
 # Compilation
 
 RM = rm -rf
-CC = g++
+CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
 # Directories
@@ -75,9 +75,6 @@ fclean : clean
 	$(RM) $(NAME)
 
 re : fclean all
-
-norm :
-	norminette
 
 $(OBJSDIR)/%.o: $(SRCSDIR)/%.cpp
 	mkdir -p $(OBJSDIR) $(OBJS_DIR)

@@ -6,7 +6,7 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:39:17 by jtollena          #+#    #+#             */
-/*   Updated: 2024/03/26 10:56:54 by jtollena         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:26:01 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ bool is_number(const std::string& s)
     return !s.empty() && it == s.end();
 }
 
-void	read(std::string *buff){
+int	read(std::string *buff){
 	std::cin >> *buff;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	if ((*buff).empty() || !std::cin)
+		return 0;
+	return 1;
 }
 
 int	main(void){
@@ -32,40 +35,49 @@ int	main(void){
 	while (1)
 	{
 		std::cout << "Please enter a command: ADD, SEARCH (index), EXIT : ";
-		read(&buff[0]);
+		if (!read(&buff[0]))
+			return 1;
 		if (buff[0].compare("ADD") == 0){
 			Contact	*newcontact = pb.newcontact();
 			std::cout << "New Contact Setup," << std::endl;
 			std::cout << "First name : ";
-			read(&buff[1]);
+			if (!read(&buff[1]))
+				return 1;
 			newcontact->setFirstname(buff[1]);
 			std::cout << "Last name : ";
-			read(&buff[2]);
+			if (!read(&buff[2]))
+				return 1;
 			newcontact->setLastname(buff[2]);
 			std::cout << "Nickname : ";
-			read(&buff[3]);
+			if (!read(&buff[3]))
+				return 1;
 			newcontact->setNickname(buff[3]);
 			std::cout << "Phone number : ";
 			while (!is_number(buff[4])) {
-				read(&buff[4]);
+				if (!read(&buff[4]))
+					return 1;
 				if (is_number(buff[4]))
 					break;
 				std::cout << buff[4] << " is not a valid number." << std::endl;
+				buff[4].clear();
 			}
 			newcontact->setPhone(buff[4]);
 			buff[4] = "";
 			std::cout << "Darkest secret : ";
-			read(&buff[5]);
+			if (!read(&buff[5]))
+				return 1;
 			newcontact->setSecret(buff[5]);
 		} else if (buff[0].compare("SEARCH") == 0){
 			pb.display();
 			if (pb.contact_size() > 0){
 				while (!is_number(buff[0])) {
 					std::cout << "Enter contact index to display, use EXIT to go back: ";
-					read(&buff[0]);
+					if (!read(&buff[0]))
+						return 1;
 					if (is_number(buff[0]) || !buff[0].compare("EXIT"))
 						break;
 					std::cout << buff[0] << " is not a valid index." << std::endl;
+					buff[0].clear();
 				}
 				if (is_number(buff[0])){
 					try {
